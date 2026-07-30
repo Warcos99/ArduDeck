@@ -1,0 +1,2 @@
+default_fqbn: arduino:megaavr:nona4809
+default_port: /dev/ttyACM0
