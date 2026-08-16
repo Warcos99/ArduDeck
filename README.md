@@ -3,4 +3,5 @@ small platform for applets and menus on arduino
 
 ---
 
-WIP
+this is a WIP.  A full write up is coming
+
