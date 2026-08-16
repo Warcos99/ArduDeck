@@ -1,8 +1,23 @@
 #include "ForwardDeclarations.h"
 
-// menuSetting is the currently highlighted item - 0-based,
-// matches the indices in menuItems[] directly.
+// menuSetting -> what to display on the menu screen
+// currentCase -> what applet or menu to run
 int menuSetting = 0;
+int currentCase = 0;
+
+// edit MAX_CASES and menuItems to add to the men
+const int MAX_CASES = 9;
+const char* menuItems[] = {
+  "1: Info",
+  "2: EDH Life",
+  "3: TTRPG Dice",
+  "4: Counter",
+  "5: Chronograph",
+  "6: Timer",
+  "7: Blink",
+  "8: BTN Test",
+  "9: Credits"
+};
 
 // Dirty flag - tells the screen when it needs to be redrawn.
 static bool menuDirty = true;
@@ -13,13 +28,17 @@ void menu_singleClick() {
       setScreen(&infoScreen);
       break;
 
-    case 1:
+    case 6:
       setScreen(&blinkScreen);
       break;
 
-    case 2:
-      setScreen(&creditsScreen);
+    case 7:
+      setScreen(&btnTestScreen);
       break;
+
+    case 8:
+        setScreen(&creditsScreen);
+        break;
   }
 }
 

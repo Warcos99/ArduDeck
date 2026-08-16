@@ -1,10 +1,8 @@
 #ifndef FORWARD_DECLARATIONS_H
 #define FORWARD_DECLARATIONS_H
 
-// =============================================
-// EVENT TYPES
-// =============================================
-
+// Event Types, once event is polled, this helps determine
+// what kind of event it was.
 enum EventType {
   EVT_NONE = 0,
   EVT_ROT_CW,
@@ -13,33 +11,31 @@ enum EventType {
   EVT_DOUBLE_CLICK
 };
 
+// struct Event sets up the format that events show up as
 struct Event {
   EventType type;
   int value;
 };
 
-// =============================================
-// SCREEN TYPE
-// =============================================
+// Screen Type
 // Each "applet" (menu, info, etc.) fills one of
-// these out. Only currentScreen's handlers ever
-// run, so no two files can collide on a name.
+// these out. Only currentScreen's handlers ever run
 
 struct Screen {
   void (*onSingleClick)();
   void (*onDoubleClick)();
   void (*onClockWise)();
   void (*onCounterClockWise)();
-  void (*onEnter)();   // optional, runs once when screen becomes active
-  void (*update)();    // runs every loop() - polls, navigates, displays
+  void (*onEnter)();
+  void (*update)();
 };
 
 extern Screen* currentScreen;
 void setScreen(Screen* s);
 
-// =============================================
-// FUNCTION DECLARATIONS
-// =============================================
+// ----------------------
+// Function Declarations
+
 
 Event pollEvent();
 void navigation(Event evt);
@@ -58,6 +54,9 @@ extern Screen blinkScreen;
 
 // 3. Credits
 extern Screen creditsScreen;
+
+// 4. BTN Test
+extern Screen btnTestScreen;
 
 // Shared globals other files need (declared once, defined in ArduDeck2.ino)
 extern int currentCase;

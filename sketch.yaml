@@ -1,2 +1,6 @@
-default_fqbn: arduino:megaavr:nona4809
-default_port: /dev/ttyACM0
+default_fqbn: arduino:avr:nano:cpu=atmega328old
+default_port: /dev/ttyUSB0
+# default_protocol: serial
+
+# default_fqbn: arduino:megaavr:nona4809
+# default_port: /dev/ttyACM0
