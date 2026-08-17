@@ -28,6 +28,10 @@ void menu_singleClick() {
       setScreen(&infoScreen);
       break;
 
+    case 1:
+      setScreen(&mtgScreen);
+      break;
+
     case 6:
       setScreen(&blinkScreen);
       break;

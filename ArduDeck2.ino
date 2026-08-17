@@ -34,9 +34,36 @@ unsigned long lastClickTime = 0;
 bool waitingSecondClick = false;
 const unsigned long doubleClickGapMs = 200;
 
+//custom characters
+byte arrow1[] = { //right pointing arrow
+  B00000,
+  B00100,
+  B00110,
+  B11111,
+  B11111,
+  B00110,
+  B00100,
+  B00000
+};
+
+byte arrow2[] = { //left pointing arrow
+  B00000,
+  B00100,
+  B01100,
+  B11111,
+  B11111,
+  B01100,
+  B00100,
+  B00000
+};
+
 void setup() {
   //initialize LCD screen
   lcd.begin(16, 2);
+
+  //create custome characters
+  lcd.createChar(0, arrow1);
+  lcd.createChar(1, arrow2);
 
   // start the program by taking a reading of CLK
   prev_CLK_state = analogRead(CLK_PIN) > HIGH_THRESH;

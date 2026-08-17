@@ -45,18 +45,24 @@ void runScreen();
 void displayMenu();
 extern Screen menuScreen;
 
-// 1. Info
+// Info
 void displayInfo();
 extern Screen infoScreen;
 
-// 2. Blink
+// MTG Life counter
+extern Screen mtgScreen;
+void drawArrows();
+void drawMTGscreen();
+
+// Blink
 extern Screen blinkScreen;
 
-// 3. Credits
+// Credits
 extern Screen creditsScreen;
 
-// 4. BTN Test
+// BTN Test
 extern Screen btnTestScreen;
+
 
 // Shared globals other files need (declared once, defined in ArduDeck2.ino)
 extern int currentCase;
