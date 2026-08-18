@@ -54,6 +54,12 @@ extern Screen mtgScreen;
 void drawArrows();
 void drawMTGscreen();
 
+// Dice Roller
+extern Screen diceScreen;
+
+// Counter
+extern Screen counterScreen;
+
 // Blink
 extern Screen blinkScreen;
 

@@ -28,8 +28,6 @@ bool debounced_SW_state;
 unsigned long lastRotationTime = 0;
 const unsigned long rotationDebounceMs = 100;
 
-// variables used in functions.ino
-// used for the logic that checks double click
 unsigned long lastClickTime = 0;
 bool waitingSecondClick = false;
 const unsigned long doubleClickGapMs = 200;

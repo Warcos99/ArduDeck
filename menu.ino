@@ -32,6 +32,14 @@ void menu_singleClick() {
       setScreen(&mtgScreen);
       break;
 
+    case 2:
+      setScreen(&diceScreen);
+      break;
+
+    case 3:
+      setScreen(&counterScreen);
+      break;
+
     case 6:
       setScreen(&blinkScreen);
       break;
