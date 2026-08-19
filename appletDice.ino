@@ -71,7 +71,7 @@ void dice_singleClick() {
   diceDirty = true;
 }
 
-void dice_doubleClick() {
+void dice_menuClick() {
   // return to home menu
   setScreen(&menuScreen);
 }
@@ -218,7 +218,7 @@ void dice_update() {
 // =============================================
 Screen diceScreen = {
   dice_singleClick,
-  dice_doubleClick,
+  dice_menuClick,
   dice_clockWise,
   dice_counterClockWise,
   dice_onEnter,

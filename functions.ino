@@ -12,7 +12,6 @@ void setScreen(Screen* s) {
 // POLL EVENT
 Event pollEvent() {
   CLK_state = analogRead(CLK_PIN)>(prev_CLK_state ? LOW_THRESH : HIGH_THRESH);
-
   if (CLK_state != prev_CLK_state && CLK_state == HIGH) {
     unsigned long now = millis();
     if (now - lastRotationTime > rotationDebounceMs) {
@@ -28,28 +27,30 @@ Event pollEvent() {
       return {EVT_NONE, 0};
     }
   }
-
   prev_CLK_state = CLK_state;
 
+  // Encoder push-button -> single click only, fires immediately on release
   SW_state = analogRead(SW_PIN) > (debounced_SW_state ? LOW_THRESH : HIGH_THRESH);
-    if (SW_state != debounced_SW_state) {
-      bool wasReleased = (debounced_SW_state == false && SW_state == true);
-      debounced_SW_state = SW_state;
-      if (wasReleased) {
-        unsigned long now = millis();
-        if (waitingSecondClick && (now - lastClickTime) <= doubleClickGapMs) {
-          waitingSecondClick = false;
-          return {EVT_DOUBLE_CLICK, 0};
-        } else {
-          lastClickTime = now;
-          waitingSecondClick = true;
-        }
+  if (SW_state != debounced_SW_state) {
+    bool wasReleased = (debounced_SW_state == false && SW_state == true);
+    debounced_SW_state = SW_state;
+    if (wasReleased) {
+      unsigned long now = millis();
+      if (now - lastClickTime > clickDebounceMs) {
+        lastClickTime = now;
+        return {EVT_SINGLE_CLICK, 0};
       }
     }
+  }
 
-  if (waitingSecondClick && (millis() - lastClickTime) > doubleClickGapMs) {
-    waitingSecondClick = false;
-    return {EVT_SINGLE_CLICK, 0};
+  // Menu button (button2 on A4) -> fires on press
+  button2_state = analogRead(BUTTON2_PIN) > (debounced_button2_state ? LOW_THRESH : HIGH_THRESH);
+  if (button2_state != debounced_button2_state) {
+    bool wasPressed = (debounced_button2_state == false && button2_state == true);
+    debounced_button2_state = button2_state;
+    if (wasPressed) {
+      return {EVT_MENU_CLICK, 0};
+    }
   }
 
   return {EVT_NONE, 0};
@@ -69,8 +70,8 @@ void navigation(Event evt) {
     case EVT_SINGLE_CLICK:
       if (currentScreen->onSingleClick) currentScreen->onSingleClick();
       break;
-    case EVT_DOUBLE_CLICK:
-      if (currentScreen->onDoubleClick) currentScreen->onDoubleClick();
+    case EVT_MENU_CLICK:
+      if (currentScreen->onMenuClick) currentScreen->onMenuClick();
       break;
     default:
       break;

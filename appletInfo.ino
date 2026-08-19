@@ -9,7 +9,10 @@ const char* pages[][2] = {
   {"Screen          ", " 16x2 LCD Screen"},
   {"Button          ", "  Rotary Encoder"},
   {"R1-200 R3-100k  ", "   C1-1U C2-0.1U"},
-  {"code: github  W-", "arcos99/ArduDeck"},
+  {"Code: github  W-", "arcos99/ArduDeck"},
+  {"Battery:        ", "3.7V 840mAh LiPo"},
+  {"Volt Boost      ", "    output: 7.8V"},
+  {"Battery Charger ", "          TP4056"},
   {"End             ", "         (T u T)"}
 };
 const int numPages = sizeof(pages) / sizeof(pages[0]);
@@ -27,7 +30,23 @@ void info_singleClick() {
   infoDirty = true;
 }
 
-void info_doubleClick() {
+void info_clockWise(){
+    infoPage++;
+    if (infoPage >= numPages) {
+      infoPage = 0;
+    }
+    infoDirty = true;
+}
+
+void info_counterClockWise(){
+    infoPage--;
+    if (infoPage <0){
+        infoPage = 0;
+    }
+    infoDirty = true;
+}
+
+void info_menuClick() {
   currentCase = 0;
   setScreen(&menuScreen);
 }
@@ -55,9 +74,9 @@ void displayInfo() {
 
 Screen infoScreen = {
   info_singleClick,
-  info_doubleClick,
-  nullptr,
-  nullptr,
+  info_menuClick,
+  info_clockWise,
+  info_counterClockWise,
   info_enter,
   displayInfo
 };

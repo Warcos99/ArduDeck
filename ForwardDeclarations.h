@@ -8,7 +8,7 @@ enum EventType {
   EVT_ROT_CW,
   EVT_ROT_CCW,
   EVT_SINGLE_CLICK,
-  EVT_DOUBLE_CLICK
+  EVT_MENU_CLICK
 };
 
 // struct Event sets up the format that events show up as
@@ -23,7 +23,7 @@ struct Event {
 
 struct Screen {
   void (*onSingleClick)();
-  void (*onDoubleClick)();
+  void (*onMenuClick)();
   void (*onClockWise)();
   void (*onCounterClockWise)();
   void (*onEnter)();
@@ -59,6 +59,9 @@ extern Screen diceScreen;
 
 // Counter
 extern Screen counterScreen;
+
+// Chronometer
+extern Screen chronoScreen;
 
 // Blink
 extern Screen blinkScreen;

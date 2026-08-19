@@ -18,7 +18,7 @@ void btnTest_singleClick() {
   btnTestDirty = true;
 }
 
-void btnTest_doubleClick() {
+void btnTest_menuClick() {
   setScreen(&menuScreen);
 }
 
@@ -69,7 +69,7 @@ void btnTest_update() {
 
 Screen btnTestScreen = {
   btnTest_singleClick,
-  btnTest_doubleClick,
+  btnTest_menuClick,
   btnTest_clockWise,
   btnTest_counterClockWise,
   btnTest_onEnter,

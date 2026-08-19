@@ -28,7 +28,7 @@ void mtg_singleClick() {
   mtgDirty = true;
 }
 
-void mtg_doubleClick() {
+void mtg_menuClick() {
     // return to home menu
   setScreen(&menuScreen);
 }
@@ -151,7 +151,7 @@ void drawMTGscreen(){
 
 Screen mtgScreen = {
   mtg_singleClick,
-  mtg_doubleClick,
+  mtg_menuClick,
   mtg_clockWise,
   mtg_counterClockWise,
   mtg_onEnter,

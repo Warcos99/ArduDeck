@@ -12,6 +12,7 @@
 #define DIRECTION_CCW 1
 #define HIGH_THRESH 650
 #define LOW_THRESH 370
+#define BUTTON2_PIN A4
 
 // pins for 16x2 LCD screen
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
@@ -28,9 +29,14 @@ bool debounced_SW_state;
 unsigned long lastRotationTime = 0;
 const unsigned long rotationDebounceMs = 100;
 
+// used to debounce the encoder push-button (SW)
 unsigned long lastClickTime = 0;
-bool waitingSecondClick = false;
-const unsigned long doubleClickGapMs = 200;
+const unsigned long clickDebounceMs = 200;
+
+// variables used in functions.ino
+// used for debouncing the menu button (button2)
+bool button2_state;
+bool debounced_button2_state;
 
 //custom characters
 byte arrow1[] = { //right pointing arrow
@@ -66,6 +72,7 @@ void setup() {
   // start the program by taking a reading of CLK
   prev_CLK_state = analogRead(CLK_PIN) > HIGH_THRESH;
   debounced_SW_state = analogRead(SW_PIN) > HIGH_THRESH;
+  debounced_button2_state = analogRead(BUTTON2_PIN) > HIGH_THRESH;
 
   //clear screen and display menu
   lcd.clear();

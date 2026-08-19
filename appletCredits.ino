@@ -32,7 +32,7 @@ void credits_singleClick() {
   appletDirty = true;
 }
 
-void credits_doubleClick() {
+void credits_menuClick() {
 
   // Return to the menu.
 
@@ -41,14 +41,22 @@ void credits_doubleClick() {
 
 void credits_clockWise() {
 
-  // Optional
+    creditsPage++;
+
+  if (creditsPage >= creditsNumPages) {
+    creditsPage = 0;
+  }
 
   appletDirty = true;
 }
 
 void credits_counterClockWise() {
 
-  // Optional
+  creditsPage--;
+
+  if (creditsPage <0){
+      creditsPage = 0;
+  }
 
   appletDirty = true;
 }
@@ -92,7 +100,7 @@ void credits_update() {
 
 Screen creditsScreen = {
   credits_singleClick,
-  credits_doubleClick,
+  credits_menuClick,
   credits_clockWise,
   credits_counterClockWise,
   credits_onEnter,

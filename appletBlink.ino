@@ -14,7 +14,7 @@ void blink_onEnter() {
   lastBlinkToggle = millis();
 }
 
-void blink_doubleClick() {
+void blink_menuClick() {
   setScreen(&menuScreen);
 }
 
@@ -45,7 +45,7 @@ void blink_update() {
 
 Screen blinkScreen = {
   nullptr,             // single click does nothing
-  blink_doubleClick,
+  blink_menuClick,
   blink_clockWise,
   blink_counterClockWise,
   blink_onEnter,

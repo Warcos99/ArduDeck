@@ -40,6 +40,10 @@ void menu_singleClick() {
       setScreen(&counterScreen);
       break;
 
+    case 4:
+      setScreen(&chronoScreen);
+      break;
+
     case 6:
       setScreen(&blinkScreen);
       break;
@@ -54,7 +58,7 @@ void menu_singleClick() {
   }
 }
 
-void menu_doubleClick() {
+void menu_menuClick() {
   menuSetting = 0;
   menuDirty = true;
 }
@@ -103,7 +107,7 @@ void displayMenu() {
 
 Screen menuScreen = {
   menu_singleClick,
-  menu_doubleClick,
+  menu_menuClick,
   menu_clockWise,
   menu_counterClockWise,
   menu_enter,

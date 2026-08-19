@@ -18,7 +18,7 @@ void counter_singleClick() {
   counterDirty = true;
 }
 
-void counter_doubleClick() {
+void counter_menuClick() {
   // Return to the menu.
   setScreen(&menuScreen);
 }
@@ -66,7 +66,7 @@ void counter_update() {
 
 Screen counterScreen = {
   counter_singleClick,
-  counter_doubleClick,
+  counter_menuClick,
   counter_clockWise,
   counter_counterClockWise,
   counter_onEnter,
