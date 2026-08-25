@@ -67,7 +67,7 @@ Here is the bread and potatoes of the program.  This is set up so you can make t
 
 ## 4. Making a new applet
 
-you can use staticAppletTemplate.md to start your applet.
+you can use staticAppletTemplate.md to start your applet.  Just make sure it is in a .ino file. the template is in markdown to avoid arduino confusing it as an actual program file.
 you will need to do the following:  
 
 - rename variables
