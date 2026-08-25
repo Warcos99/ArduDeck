@@ -3,7 +3,7 @@
 int infoPage = 0;
 
 const char* pages[][2] = {
-  {"**Ardu-Deck V2**", "Click 4 Next Pg "},
+  {"**Ardu-Deck V3**", "pinout on nxt pg"},
   {"3DA98760123G5RT ", "VDDDDDDAAAAGVXX "},
   {"Microcontroller ", "     arduino:avr"},
   {"Screen          ", " 16x2 LCD Screen"},
