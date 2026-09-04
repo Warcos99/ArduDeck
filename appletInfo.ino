@@ -1,43 +1,62 @@
 #include "ForwardDeclarations.h"
+#include <avr/pgmspace.h>
 
 int infoPage = 0;
-
-const char* pages[][2] = {
-  {"**Ardu-Deck V3**", "pinout on nxt pg"},
-  {"3DA98760123G5RT ", "VDDDDDDAAAAGVXX "},
-  {"Microcontroller ", "     arduino:avr"},
-  {"Screen          ", " 16x2 LCD Screen"},
-  {"Button          ", "  Rotary Encoder"},
-  {"R1-200 R3-100k  ", "   C1-1U C2-0.1U"},
-  {"Code: github  W-", "arcos99/ArduDeck"},
-  {"Battery:        ", "3.7V 840mAh LiPo"},
-  {"Volt Boost      ", "    output: 7.8V"},
-  {"Battery Charger ", "          TP4056"},
-  {"End             ", "         (T u T)"}
-};
-const int numPages = sizeof(pages) / sizeof(pages[0]);
-
-// Private dirty flag for this screen
+const int numPages = 24; //hardcoded for now
 static bool infoDirty = true;
 
-void info_singleClick() {
-  infoPage++;
+const char page0[] PROGMEM = "  Ardu-Deck V3  ";
+const char page1[] PROGMEM = "----------------";
+const char page2[] PROGMEM = "pinout on below ";
+const char page3[] PROGMEM = "3DA98760123G5RT ";
+const char page4[] PROGMEM = "VDDDDDDAAAAGVXX ";
+const char page5[] PROGMEM = "- - - - - - - - ";
+const char page6[] PROGMEM = "Microcontroller ";
+const char page7[] PROGMEM = "arduino nano avr";
+const char page8[] PROGMEM = "16x2 LCD Screen ";
+const char page9[] PROGMEM = "Rotary Encoder  ";
+const char page10[] PROGMEM = " debounced w/556";
+const char page11[] PROGMEM = "LiPo Battery    ";
+const char page12[] PROGMEM = " 3.7v 840mAh    ";
+const char page13[] PROGMEM = "Battery Charger ";
+const char page14[] PROGMEM = " TP4056         ";
+const char page15[] PROGMEM = "- - - - - - - - ";
+const char page16[] PROGMEM = "Code found @ git";
+const char page17[] PROGMEM = " github/warcos99";
+const char page18[] PROGMEM = "Documentation on";
+const char page19[] PROGMEM = " warcos.net     ";
+const char page20[] PROGMEM = "Developed during";
+const char page21[] PROGMEM = " Summer 2026    ";
+const char page22[] PROGMEM = "- - - - - - - - ";
+const char page23[] PROGMEM = "                ";
+const char page24[] PROGMEM = "           (T.T)";
 
-  if (infoPage >= numPages) {
-    infoPage = 0;
-  }
+const char *const pages[] PROGMEM = {
+    page0, page1, page2, page3, page4, page5, page6 , page7, page8, page9,
+    page10,page11,page12,page13,page14,page15,page16,page17,page18,page19,
+    page20,page21,page22,page23,page24
+};
 
-  infoDirty = true;
+
+
+String getPageLine(uint8_t index) {
+    char buf[17];
+    strncpy_P(buf,(const char*)pgm_read_ptr(&pages[index]), sizeof(buf) -1);
+    buf[sizeof(buf) - 1] = '\0';
+    return String(buf);
 }
 
+void info_singleClick() {
+  infoPage = 0;
+  infoDirty = true;
+}
 void info_clockWise(){
     infoPage++;
-    if (infoPage >= numPages) {
-      infoPage = 0;
+    if (infoPage >= numPages-1) {
+      infoPage = numPages-1;
     }
     infoDirty = true;
 }
-
 void info_counterClockWise(){
     infoPage--;
     if (infoPage <0){
@@ -45,33 +64,30 @@ void info_counterClockWise(){
     }
     infoDirty = true;
 }
-
 void info_menuClick() {
   currentCase = 0;
   setScreen(&menuScreen);
 }
-
 void info_enter() {
   infoDirty = true;
 }
-
 void displayInfo() {
   if (!infoDirty) return;
   infoDirty = false;
-
   lcd.clear();
-
   if (infoPage < numPages) {
+    String line0 = getPageLine(infoPage);
+    String line1 = getPageLine(infoPage+1);
+
     lcd.setCursor(0, 0);
-    lcd.print(pages[infoPage][0]);
+    lcd.print(line0);
     lcd.setCursor(0, 1);
-    lcd.print(pages[infoPage][1]);
+    lcd.print(line1);
   } else {
     lcd.setCursor(0, 0);
-    lcd.print("Unknown Page");
+    lcd.print("how r u here?");
   }
 }
-
 Screen infoScreen = {
   info_singleClick,
   info_menuClick,

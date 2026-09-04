@@ -1,17 +1,9 @@
 #include "ForwardDeclarations.h"
 
-// =============================================
-// APPLET STATE
-// =============================================
-
 static bool btnTestDirty = true;
 
 int rot = 0;
 int click = 0;
-
-// =============================================
-// EVENT HANDLERS
-// =============================================
 
 void btnTest_singleClick() {
   click++;
@@ -32,19 +24,11 @@ void btnTest_counterClockWise() {
   btnTestDirty = true;
 }
 
-// =============================================
-// SCREEN ENTER
-// =============================================
-
 void btnTest_onEnter() {
   rot = 0;
   click = 0;
   btnTestDirty = true;
 }
-
-// =============================================
-// DISPLAY
-// =============================================
 
 void btnTest_update() {
   if (!btnTestDirty) {
@@ -62,10 +46,6 @@ void btnTest_update() {
   lcd.print("click:");
   lcd.print(click);
 }
-
-// =============================================
-// SCREEN OBJECT
-// =============================================
 
 Screen btnTestScreen = {
   btnTest_singleClick,

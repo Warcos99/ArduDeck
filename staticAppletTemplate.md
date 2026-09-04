@@ -1,4 +1,5 @@
 #include "ForwardDeclarations.h"
+#include <avr/pgmspace.h>
 
 // rename appletDirty to counterDirty or whatever is the name of the applet
 // rename applet_singleClick() into counter_singleClick() or whatever the name of the applet is
@@ -11,23 +12,10 @@
 // on VIM to replace all instances of "applet" to "counter" use:
 //:%s/applet/counter/g  -> % - Apply to whole File | s - substitute | /g-apply all at once
 
-// =============================================
-// APPLET STATE
-// =============================================
-
+// declare variables 
 static bool appletDirty = true;
 
-// Add any variables your applet needs here.
-// Example:
-//
-// int page = 0;
-// int setting = 5;
-
-
-// =============================================
-// EVENT HANDLERS
-// =============================================
-
+// user actions
 void applet_singleClick() {
 
   // Change state here.
@@ -56,18 +44,10 @@ void applet_counterClockWise() {
   appletDirty = true;
 }
 
-// =============================================
-// SCREEN ENTER
-// =============================================
-
 void applet_onEnter() {
 
   appletDirty = true;
 }
-
-// =============================================
-// DISPLAY
-// =============================================
 
 void applet_update() {
 
@@ -90,10 +70,6 @@ void applet_update() {
 
   }
 }
-
-// =============================================
-// SCREEN OBJECT
-// =============================================
 
 Screen appletScreen = {
   applet_singleClick,

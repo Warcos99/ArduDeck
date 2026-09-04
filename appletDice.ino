@@ -1,8 +1,5 @@
 #include "ForwardDeclarations.h"
 
-// =============================================
-// APPLET STATE
-// =============================================
 static bool diceDirty = true;
 
 // setup fields
@@ -18,20 +15,12 @@ const int diceSidesCount = 7;
 static int diceRolls[20];
 static bool diceShowingResults = false;
 
-// "6+6+12+3+(2)" style breakdown string, built once per roll.
-// 20 dice x up to 3 digits + separators + a "+(-20)" modifier suffix
-// fits comfortably in 100 chars.
 static char diceResultStr[100];
 static int diceResultLen = 0;
 static int diceScrollOffset = 0;   // for scrolling row 1 when it's longer than 16 chars
 
-// =============================================
-// EVENT HANDLERS
-// =============================================
 void dice_singleClick() {
   if (diceShowingResults) {
-    // single click backs out of results to the setup screen.
-    // Land back on the first field (Quantity), not wherever ROLL left us.
     diceShowingResults = false;
     diceMarker = 0;
     diceDirty = true;
@@ -39,12 +28,10 @@ void dice_singleClick() {
   }
 
   if (diceMarker == 3) {
-    // marker is on ROLL - actually roll the dice
     for (int i = 0; i < diceQty; i++) {
       diceRolls[i] = random(1, diceSidesOptions[diceSidesIndex] + 1);
     }
 
-    // build the "6+6+12+3" breakdown string once, up front
     int pos = 0;
     for (int i = 0; i < diceQty; i++) {
       if (i > 0) {
@@ -72,13 +59,11 @@ void dice_singleClick() {
 }
 
 void dice_menuClick() {
-  // return to home menu
   setScreen(&menuScreen);
 }
 
 void dice_clockWise() {
   if (diceShowingResults) {
-    // scroll the results line to the right (reveal later dice)
     int maxOffset = diceResultLen - 16;
     if (maxOffset < 0) {
       maxOffset = 0;
@@ -115,7 +100,6 @@ void dice_clockWise() {
 
 void dice_counterClockWise() {
   if (diceShowingResults) {
-    // scroll the results line to the left
     if (diceScrollOffset > 0) {
       diceScrollOffset--;
       diceDirty = true;
@@ -146,18 +130,12 @@ void dice_counterClockWise() {
   diceDirty = true;
 }
 
-// =============================================
-// SCREEN ENTER
-// =============================================
 void dice_onEnter() {
   diceMarker = 0;
   diceShowingResults = false;
   diceDirty = true;
 }
 
-// =============================================
-// DISPLAY
-// =============================================
 void dice_update() {
   if (!diceDirty) {
     return;
@@ -213,9 +191,6 @@ void dice_update() {
   diceDirty = false;
 }
 
-// =============================================
-// SCREEN OBJECT
-// =============================================
 Screen diceScreen = {
   dice_singleClick,
   dice_menuClick,

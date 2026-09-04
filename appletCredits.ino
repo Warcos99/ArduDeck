@@ -1,102 +1,34 @@
 #include "ForwardDeclarations.h"
-
-// =============================================
-// APPLET STATE
-// =============================================
+#include <avr/pgmspace.h>
 
 static bool appletDirty = true;
 
-int creditsPage = 0;
-
-const char* cPages[][2] = {
-  {"**Ardu-Deck V2**", "##---Credits--##"},
-  {"J. Marcos Avina ", "     Summer 2026"},
-  {"Website:        ", "      warcos.net"},
-  {"github:         ", "       /Warcos99"},
-  {"End             ", "          (@u@^)"}
-};
-const int creditsNumPages = sizeof(cPages) / sizeof(cPages[0]);
-
-
-// =============================================
-// EVENT HANDLERS
-// =============================================
-
 void credits_singleClick() {
-  creditsPage++;
-
-  if (creditsPage >= creditsNumPages) {
-    creditsPage = 0;
-  }
-
   appletDirty = true;
 }
-
 void credits_menuClick() {
-
   // Return to the menu.
-
   setScreen(&menuScreen);
 }
-
 void credits_clockWise() {
-
-    creditsPage++;
-
-  if (creditsPage >= creditsNumPages) {
-    creditsPage = 0;
-  }
-
   appletDirty = true;
 }
-
 void credits_counterClockWise() {
-
-  creditsPage--;
-
-  if (creditsPage <0){
-      creditsPage = 0;
-  }
-
   appletDirty = true;
 }
-
-
-// =============================================
-// SCREEN ENTER
-// =============================================
 
 void credits_onEnter() {
-
   appletDirty = true;
 }
-
-
-// =============================================
-// DISPLAY
-// =============================================
 
 void credits_update() {
     if (!appletDirty) return;
     appletDirty = false;
-
-    lcd.clear();
-
-    if (creditsPage <= cPages) {
-        lcd.setCursor(0, 0);
-        lcd.print(cPages[creditsPage][0]);
-        lcd.setCursor(0, 1);
-        lcd.print(cPages[creditsPage][1]);
-      } else {
-        lcd.setCursor(0, 0);
-        lcd.print("Unknown Page");
-      }
+    lcd.setCursor(0,0);
+    lcd.print("  Thanks 4 All  ");
+    lcd.setCursor(0,1);
+    lcd.print("       <3       ");
 }
-
-
-// =============================================
-// SCREEN OBJECT
-// =============================================
 
 Screen creditsScreen = {
   credits_singleClick,

@@ -8,15 +8,15 @@ int currentCase = 0;
 // edit MAX_CASES and menuItems to add to the men
 const int MAX_CASES = 9;
 const char* menuItems[] = {
-  "1: Info",
-  "2: EDH Life",
-  "3: TTRPG Dice",
-  "4: Counter",
+  "1: Info       ",
+  "2: EDH Life   ",
+  "3: TTRPG Dice ",
+  "4: Counter    ",
   "5: Chronograph",
-  "6: Timer",
-  "7: Blink",
-  "8: BTN Test",
-  "9: Credits"
+  "6: Char Gen   ",
+  "7: Blink      ",
+  "8: BTN Test   ",
+  "9: Credits    "
 };
 
 // Dirty flag - tells the screen when it needs to be redrawn.
@@ -42,6 +42,10 @@ void menu_singleClick() {
 
     case 4:
       setScreen(&chronoScreen);
+      break;
+
+    case 5:
+      setScreen(&charScreen);
       break;
 
     case 6:

@@ -1,10 +1,6 @@
 
 #include "ForwardDeclarations.h"
 
-// =============================================
-// APPLET STATE
-// =============================================
-
 static bool mtgDirty = true;
 
 int life = 40;
@@ -13,11 +9,7 @@ int counter1 = 0;
 int counter2 = 0;
 int counterMarker = 0; //0:Life 1:ComTax 2:c1 3:c2
 
-
-// =============================================
-// EVENT HANDLERS
-// =============================================
-
+// user actions
 void mtg_singleClick() {
   counterMarker ++;
 
@@ -74,20 +66,12 @@ void mtg_counterClockWise() {
 }
 
 
-// =============================================
-// SCREEN ENTER
-// =============================================
 
 void mtg_onEnter() {
   drawArrows();
   drawMTGscreen();
   mtgDirty = true;
 }
-
-
-// =============================================
-// DISPLAY
-// =============================================
 
 void mtg_update() {
 
@@ -144,10 +128,6 @@ void drawMTGscreen(){
   lcd.print("C2: ");
   lcd.print(counter2);
 }
-
-// =============================================
-// SCREEN OBJECT
-// =============================================
 
 Screen mtgScreen = {
   mtg_singleClick,

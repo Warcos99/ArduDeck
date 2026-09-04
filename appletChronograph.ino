@@ -1,32 +1,27 @@
 #include "ForwardDeclarations.h"
-// =============================================
-// APPLET STATE
-// =============================================
+
 static bool chronoDirty = true;   // controls when we redraw the LCD
 bool running = false;             // is the timer currently counting?
 unsigned long segmentStart = 0;   // millis() value when current run segment began
 unsigned long bankedMs = 0;       // total elapsed ms from all completed segments
 long displayTenths = -1;          // last tenth-of-a-second value shown; -1 forces first draw
 bool showSecondsMode = false;     // false = hh:mm:ss:t, true = plain seconds (e.g. 3847.2 sec)
-// =============================================
-// HELPERS
-// =============================================
+
 unsigned long getElapsedMs() {
   if (running) {
     return bankedMs + (millis() - segmentStart);
   }
   return bankedMs;
 }
-// prints a value 0-99 as two digits with a leading zero if needed
+
 void printTwoDigits(int value) {
   if (value < 10) {
     lcd.print('0');
   }
   lcd.print(value);
 }
-// =============================================
-// EVENT HANDLERS
-// =============================================
+
+// user actions
 void chrono_singleClick() {
   if (!running) {
     // start or resume
@@ -55,18 +50,14 @@ void chrono_counterClockWise() {
     chronoDirty = true;
   }
 }
-// =============================================
-// SCREEN ENTER
-// =============================================
+
 void chrono_onEnter() {
   running = false;
   bankedMs = 0;
   displayTenths = -1;
   chronoDirty = true;
 }
-// =============================================
-// DISPLAY
-// =============================================
+
 void chrono_update() {
   unsigned long elapsed = getElapsedMs();
   long currentTenths = elapsed / 100; // total tenths of a second elapsed
@@ -118,9 +109,7 @@ void chrono_update() {
   lcd.write(running ? byte(2) : byte(3)); // running arrow or paused icon
   chronoDirty = false;
 }
-// =============================================
-// SCREEN OBJECT
-// =============================================
+
 Screen chronoScreen = {
   chrono_singleClick,
   chrono_menuClick,

@@ -63,6 +63,9 @@ extern Screen counterScreen;
 // Chronometer
 extern Screen chronoScreen;
 
+// Character Generator
+extern Screen charScreen;
+
 // Blink
 extern Screen blinkScreen;
 

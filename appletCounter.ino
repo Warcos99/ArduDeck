@@ -2,17 +2,10 @@
 #include "ForwardDeclarations.h"
 
 
-// =============================================
-// APPLET STATE
-// =============================================
-
 static bool counterDirty = true;
 int count = 0;
 
-// =============================================
-// EVENT HANDLERS
-// =============================================
-
+// user actions
 void counter_singleClick() {
   count++;
   counterDirty = true;
@@ -33,17 +26,10 @@ void counter_counterClockWise() {
   counterDirty = true;
 }
 
-// =============================================
-// SCREEN ENTER
-// =============================================
 
 void counter_onEnter() {
   counterDirty = true;
 }
-
-// =============================================
-// DISPLAY
-// =============================================
 
 void counter_update() {
   if (!counterDirty) {
@@ -59,10 +45,6 @@ void counter_update() {
   lcd.print("       ");
   lcd.print(count);
 }
-
-// =============================================
-// SCREEN OBJECT
-// =============================================
 
 Screen counterScreen = {
   counter_singleClick,
