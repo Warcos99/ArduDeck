@@ -6,7 +6,7 @@
 
 ArduDeck is an arduino based platform for running a 16x2lcd screen and rotary encoder, and easily add your own applications to a menu system.  The bulk of the work here is simply a menu system that you can use to house an applets you build.  As I develop more apps for the device, they will be added here.  
 
-The project assumes you are running a 5pin rotary encoder and 1602 LCD screen.  The wiring diagrams and PCB files can be found below:
+The project assumes you are running a 5pin rotary encoder and 1602 LCD screen.  The wiring diagrams can be found at my website: [warcos.net](https://warcos.net/HTML/Projects/ArduDeck.html)
 
 
 ---
