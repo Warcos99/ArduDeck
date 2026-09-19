@@ -14,6 +14,10 @@
 #define LOW_THRESH 370
 #define BUTTON2_PIN A4
 
+// pins for Range Finder
+#define trigPin 7
+#define echoPin 6
+
 // pins for 16x2 LCD screen
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
@@ -49,6 +53,10 @@ byte face[] = { B00000, B01110, B11111, B10001, B11011, B11011, B01110, B00000 }
 void setup() {
   //initialize LCD screen
   lcd.begin(16, 2);
+
+  //set up RangeFinder
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
 
   //create custome characters
   lcd.createChar(0, arrowR);

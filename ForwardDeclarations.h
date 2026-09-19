@@ -75,6 +75,9 @@ extern Screen creditsScreen;
 // BTN Test
 extern Screen btnTestScreen;
 
+// RangeFinder
+extern Screen rangerScreen;
+
 
 // Shared globals other files need (declared once, defined in ArduDeck2.ino)
 extern int currentCase;

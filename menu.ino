@@ -16,7 +16,7 @@ const char* menuItems[] = {
   "6: Char Gen   ",
   "7: Blink      ",
   "8: BTN Test   ",
-  "9: Credits    "
+  "9: RangeFinder"
 };
 
 // Dirty flag - tells the screen when it needs to be redrawn.
@@ -57,7 +57,7 @@ void menu_singleClick() {
       break;
 
     case 8:
-        setScreen(&creditsScreen);
+        setScreen(&rangerScreen);
         break;
   }
 }
