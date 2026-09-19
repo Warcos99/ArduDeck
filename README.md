@@ -88,6 +88,7 @@ The 1602 LCD display has limitations on how fast it can refresh, and if you upda
 
 If you need to create any custom characters, you will need to do so in ArduDeck2.ino
 
-
+For a coprehensive walkthrough of the building of the unit, and other explorations, check out my website!
+[warcos.net](https://warcos.net/HTML/Projects/ArduDeck.html)
 
 **That's basically it!**
